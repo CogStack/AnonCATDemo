@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnonCAT</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'media/cogstack_logo.jpg' %}" alt="cogstack_logo">
+        <h1>AnonCAT</h1>
+    </header>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Deidentify</button>
+    </form>
+    
+    {% if output_text %}
+    <hr>
+    <p><strong>Deidentified text:</strong></p>
+    <p>{{ output_text }}</p>
+    {% endif %}
+    
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
