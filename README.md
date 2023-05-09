@@ -17,4 +17,4 @@ Install the required packages:
 
 To run the app:
 
-`python manage.py runserver`
+`python manage.py runserver 8000`
