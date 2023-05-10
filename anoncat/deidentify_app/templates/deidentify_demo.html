@@ -21,7 +21,7 @@
     {% if output_text %}
     <hr>
     <p><strong>Deidentified text:</strong></p>
-    <p>{{ output_text }}</p>
+    <p>{{ output_text|linebreaksbr }}</p>
     {% endif %}
     
     <script src="{% static 'js/script.js' %}"></script>

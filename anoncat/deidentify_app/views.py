@@ -4,7 +4,7 @@ from .models import DeidentifiedText
 from medcat.cat import CAT
 from medcat.utils.ner import deid_text
 
-cat = CAT.load_model_pack("./models/deid_medcat_n2c2_modelpack.zip") # Load a model
+cat = CAT.load_model_pack("/Users/anthonyshek/projects/deidentify/anoncat/deidentify_app/models/deid_medcat_n2c2_modelpack.zip") # Load a model
 
 # Create your views here.
 def deidentify(request):
@@ -16,8 +16,9 @@ def deidentify(request):
 
             # Deidentify the input_text here using the MedCAT deid method
             output_text = deid_text(cat, input_text, redact=redact)
+            #output_text = output_text.replace('\n', '<br>') # TODO check this
             # "Deidentified text should be assigned till here"
-            
+
             deidentified_text = DeidentifiedText.objects.create(
                 input_text=input_text,
                 output_text=output_text
