@@ -14,15 +14,25 @@
     
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Deidentify</button>
+        <div class="form-grid">
+            <div class="form-item document-container">
+                {{ form.input_text }}
+            </div>
+            <div class="form-item center-column">
+                <button type="submit">Deidentify</button>
+                <div class="redact-checkbox">
+                    {{ form.redact.label_tag }}
+                    {{ form.redact }}
+                </div>
+                
+            </div>
+            <div class="form-item document-container">
+                {% if output_text %}
+                    <p class="output-text">{{ output_text|linebreaksbr }}</p>
+            {% endif %}
+            </div>
+        </div>
     </form>
-    
-    {% if output_text %}
-    <hr>
-    <p><strong>Deidentified text:</strong></p>
-    <p>{{ output_text|linebreaksbr }}</p>
-    {% endif %}
     
     <script src="{% static 'js/script.js' %}"></script>
 </body>
