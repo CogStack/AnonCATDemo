@@ -17,6 +17,10 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 print(BASE_DIR)
 
+# Enter your model name here:
+model_name = 'deid_medcat_n2c2_modelpack.zip'
+DEID_MODEL = os.path.join(os.path.join(BASE_DIR, 'deidentify_app', 'models', model_name))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 

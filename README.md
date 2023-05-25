@@ -15,6 +15,13 @@ Install the required packages:
 
 `pip install -r requirements.txt`
 
+### DeID Model
+
+- Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
+
+- Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
+
 To run the app:
 
 `python manage.py runserver 8000`
+
