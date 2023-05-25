@@ -19,8 +19,6 @@ def deidentify(request):
 
             # Deidentify the input_text here using the MedCAT deid method
             output_text = deid_text(cat, input_text, redact=redact)
-            #output_text = output_text.replace('\n', '<br>') # TODO check this
-            # "Deidentified text should be assigned till here"
 
             deidentified_text = DeidentifiedText.objects.create(
                 input_text=input_text,
