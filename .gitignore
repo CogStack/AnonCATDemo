@@ -1,5 +1,9 @@
 /anoncat/deidentify_app/models/*
 
+/anoncat/deidentify_app/__pycache__/*
+/anoncat/api/__pycache__/*
+/anoncat/deidentify_app/migrations/__pycache__/*
+
 /anoncat/deidentify_app/node_modules/*
 
-/anoncat/deidentify_app/__pycache__/*
+/anoncat/static/admin/*
