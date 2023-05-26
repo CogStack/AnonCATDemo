@@ -20,6 +20,5 @@ from deidentify_app.views import deidentify
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
     path('', deidentify, name='deidentify'),
 ]
