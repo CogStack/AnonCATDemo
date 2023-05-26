@@ -1,0 +1,54 @@
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+    gap: 10px;
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 500px; 
+    overflow-y: auto;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.redact-checkbox {
+    margin-bottom: 10px;
+}
+
+.input-text {
+    width: 100%; /* Adjust the width as desired */
+    height: 250px; /* Adjust the height as desired */
+    padding: 10px;
+    font-family: Arial, sans-serif; /* Set the desired font */
+    font-size: 14px; /* Set the desired font size */
+    border: 1px solid #ccc; /* Set the border properties */
+    border-radius: 5px; /* Adjust the border radius as desired */
+    resize: vertical; /* Allow vertical resizing if desired */
+}
+
+.output-text {
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Set the desired font size */
+    margin-top: 10px;
+}
+
+.document-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

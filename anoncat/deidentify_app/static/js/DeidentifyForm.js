@@ -58,6 +58,7 @@ class DeidentifyForm extends Component {
               <button type="submit">Deidentify</button>
               <div className="redact-checkbox">
                 <label>
+                  Redact   
                   <input
                     type="checkbox"
                     checked={redact}
@@ -68,7 +69,7 @@ class DeidentifyForm extends Component {
             </div>
             <div className="form-item document-container">
               {outputText && <p className="output-text">{outputText}</p>}
-              {!outputText && <p className="output-text">No output available.</p>}
+              {!outputText && <p className="output-text">Deidentification Demo</p>}
             </div>
           </div>
         </form>
