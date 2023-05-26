@@ -2,10 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./components/anoncat/deidentify_app/src/components/DeidentifyForm.js",
     output: {
-        path: path.resolve(__dirname, "./static/js"),
-        filename: "[name].js",
+        path: path.resolve(__dirname, "components/anoncat/deidentify_app/static/js"),
+        filename: "bundle.js",
     },
     module: {
         rules: [
@@ -14,6 +14,9 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                    }
                 }
             }
         ]
