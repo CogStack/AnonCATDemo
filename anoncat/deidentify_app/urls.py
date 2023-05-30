@@ -1,6 +1,6 @@
 from django.urls import path
-from deidentify_app.views import deidentify
+from . import views
 
 urlpatterns = [
-    path('api/deidentify/', deidentify),
+    path('', views.deidentify, name='deidentify-demo'),
 ]

@@ -16,9 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from deidentify_app.views import deidentify
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', deidentify, name='deidentify'),
+    path('', include('deidentify_app.urls')),
 ]
