@@ -18,19 +18,20 @@
     margin-bottom: 10px;
 }
 
-.redact-checkbox {
-    margin-bottom: 10px;
-}
-
 .input-text {
-    width: 100%; /* Adjust the width as desired */
+    width: 500%; /* Adjust the width as desired */
+    max-width: 500px; /* Set a maximum width if needed */
     height: 250px; /* Adjust the height as desired */
     padding: 10px;
     font-family: Arial, sans-serif; /* Set the desired font */
     font-size: 14px; /* Set the desired font size */
     border: 1px solid #ccc; /* Set the border properties */
     border-radius: 5px; /* Adjust the border radius as desired */
-    resize: vertical; /* Allow vertical resizing if desired */
+    resize: none; /* vertical to Allow resizing if desired */
+}
+
+.redact-checkbox {
+    margin-bottom: 10px;
 }
 
 .output-text {
