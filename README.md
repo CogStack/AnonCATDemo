@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="anoncat/deidentify_app/static/media/deidcat.png" alt="AnonCAT logo" width="100">
+</p>
+
 # Deidentify app
 
 The Deidentify app is a tool for redacting and replacing sensitive information in a document. It uses [MedCAT](https://github.com/CogStack/MedCAT), an advanced natural language processing tool, to identify and classify sensitive information, such as names, addresses, and medical terms.
@@ -22,6 +26,7 @@ pip install -r requirements.txt
  ```
 
 ### DeID Model
+ *For out of the box models please contact: contact@cogstack.org*
 
 - Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
 
