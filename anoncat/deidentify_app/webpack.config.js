@@ -1,3 +1,5 @@
+// npx webpack --config webpack.config.js
+
 const path = require("path");
 const webpack = require("webpack");
 
@@ -5,7 +7,7 @@ module.exports = {
     entry: "./static/js/DeidentifyForm.js",
     mode: 'development', // or 'production' if you're ready for deployment
     output: {
-        path: path.resolve(__dirname, "static/js"),
+        path: path.resolve(__dirname, "static/js"), // Output directory path. Check this
         filename: "bundle.js",
     },
     module: {

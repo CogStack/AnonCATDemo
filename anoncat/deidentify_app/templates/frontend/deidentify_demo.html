@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnonCAT</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'media/cogstack_logo.jpg' %}" alt="cogstack_logo">
+        <h1>AnonCAT</h1>
+    </header>
+    
+    <div id="root"></div>
+    
+    <script src="{% static 'js/bundle.js' %}"></script>
+    <script>
+        // Retrieve the CSRF token from the cookie
+        const csrfToken = "{{ csrf_token }}";
+      
+        // Pass the CSRF token to your JavaScript code
+        // You can assign it to a global variable or store it in a data attribute on an HTML element
+        // For simplicity, we'll assign it to a global variable here
+        window.csrfToken = csrfToken;
+    </script>
+
+    <form id="csrf-form" method="post">
+        {% csrf_token %}
+    </form>
+
+    <script>
+        // Extract the CSRF token value and set it as a hidden input field
+        const csrfTokenInput = document.createElement('input');
+        csrfTokenInput.setAttribute('type', 'hidden');
+        csrfTokenInput.setAttribute('name', 'csrfmiddlewaretoken');
+        csrfTokenInput.setAttribute('value', csrfToken);
+        document.getElementById('csrf-form').appendChild(csrfTokenInput);
+    </script>
+
+</body>
+</html>

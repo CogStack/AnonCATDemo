@@ -1,75 +1,85 @@
 import React, { Component } from 'react';
 import { createRoot } from 'react-dom/client';
-import cogstackLogo from '../media/cogstack_logo.jpg';
 
 class DeidentifyForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputText: '',
-      redact: false,
-      outputText: ''
-    };
-  }
+  state = {
+    inputText: '',
+    redact: false,
+    outputText: ''
+  };
 
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Get the form input values from the component state
     const { inputText, redact } = this.state;
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    // Make an AJAX request to the backend API
-    fetch('/api/deidentify/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        input_text: inputText,
-        redact: redact
-      })
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Update the state with the processed output
-        this.setState({ outputText: data.output_text });
-      })
-      .catch(error => {
-        console.error('Error:', error);
+    const formData = new FormData();
+    formData.append('input_text', inputText);
+    formData.append('redact', redact);
+    formData.append('csrfmiddlewaretoken', csrfToken);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': csrfToken,
+        },
+        body: formData,
       });
-  }
+
+      const data = await response.json();
+      this.setState({ outputText: data.output_text });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    const inputValue = type === 'checkbox' ? checked : value;
+    this.setState({ [name]: inputValue });  
+  };
 
   render() {
     const { inputText, redact, outputText } = this.state;
-    
+
     return (
       <div>
-
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-grid">
             <div className="form-item document-container">
               <textarea
-                rows={4}
+                rows={29}
+                name="inputText"
                 value={inputText}
-                onChange={event => this.setState({ inputText: event.target.value })}
+                onChange={this.handleChange}
+                style={{ width: '100%', resize: 'none' }}
+                placeholder="Enter text here"
               />
             </div>
             <div className="form-item center-column">
               <button type="submit">Deidentify</button>
               <div className="redact-checkbox">
                 <label>
-                  Redact   
+                  Redact
+                  <span style={{ marginLeft: '9px' }}></span>
                   <input
                     type="checkbox"
+                    name="redact"
                     checked={redact}
-                    onChange={event => this.setState({ redact: event.target.checked })}
+                    onChange={this.handleChange}
                   />
                 </label>
               </div>
             </div>
             <div className="form-item document-container">
-              {outputText && <p className="output-text">{outputText}</p>}
-              {!outputText && <p className="output-text">Deidentification Demo</p>}
+              {outputText ? (
+                <p className="output-text">{outputText}</p>
+              ) : (
+                <p className="output-text">Deidentification Demo7</p>
+              )}
             </div>
           </div>
         </form>

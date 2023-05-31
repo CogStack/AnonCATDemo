@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnonCAT</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'media/cogstack_logo.jpg' %}" alt="cogstack_logo">
+        <h1>AnonCAT</h1>
+    </header>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-item document-container">
+                {{ form.input_text}}
+            </div>
+            <div class="form-item center-column">
+                <button type="submit">Deidentify</button>
+                <div class="redact-checkbox">
+                    {{ form.redact.label_tag }}
+                    {{ form.redact }}
+                </div>
+                <div id="mask-checkbox-container" style="display: none;">
+                    {{ form.mask.label_tag }}
+                    {{ form.mask }}
+                </div>
+            </div>
+            <div class="form-item document-container">
+                {% if output_text %}
+                    <p class="output-text">{{ output_text|linebreaksbr }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
