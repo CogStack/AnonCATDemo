@@ -7,3 +7,6 @@
 /anoncat/deidentify_app/node_modules/*
 
 /anoncat/static/admin/*
+
+
+db.sqlite3
