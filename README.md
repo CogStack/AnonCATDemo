@@ -9,11 +9,17 @@ Customizable rules: The app allows users to create custom rules for identifying 
 Batch processing: The app can process multiple documents at once, making it easy to redact or replace sensitive information in large datasets.
 
 
-## Usage 
+## Setup 
 
-Install the required packages:
+- Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-`pip install -r requirements.txt`
+- Set up the database:
+ ```bash
+ python manage.py migrate
+ ```
 
 ### DeID Model
 
@@ -21,7 +27,24 @@ Install the required packages:
 
 - Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
 
-To run the app:
 
-`python manage.py runserver 8000`
+### Frontend Dependencies
+
+This project uses frontend dependencies managed by npm. To install them, follow these steps:
+
+1. Make sure you have [Node.js](https://nodejs.org/) and npm installed on your system.
+2. Navigate to the project's root directory.
+3. Run the following command to install the frontend dependencies:
+
+   ```bash
+   npm install
+    ```
+    ```bash
+   npm run build
+   ```
+
+## Run the app:
+```bash
+python manage.py runserver 8000
+```
 
