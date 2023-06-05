@@ -38,7 +38,7 @@ pip install -r requirements.txt
 This project uses frontend dependencies managed by npm. To install them, follow these steps:
 
 1. Make sure you have [Node.js](https://nodejs.org/) and npm installed on your system.
-2. Navigate to the project's root directory.
+2. Navigate to the project's [app directory](anoncat/deidentify_app). 
 3. Run the following command to install the frontend dependencies:
 
    ```bash
@@ -52,4 +52,3 @@ This project uses frontend dependencies managed by npm. To install them, follow 
 ```bash
 python manage.py runserver 8000
 ```
-
