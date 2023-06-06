@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    margin-left: -300px;
+    font-size: 50px;
 }
 
 .form-grid {
@@ -66,6 +66,7 @@
     font-family: Arial, sans-serif;
     font-size: 14px; /* Set the desired font size */
     margin-top: 10px;
+    white-space: pre-wrap;
 }
 
 .document-container {
@@ -87,3 +88,11 @@
     height: auto; /* Adjust the height proportionally based on the width */
   }
   
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.button-container {
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
