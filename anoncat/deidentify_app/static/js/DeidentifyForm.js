@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createRoot } from 'react-dom/client';
+import deidCat from '../media/deidcat.png';
 
 class DeidentifyForm extends Component {
   state = {
@@ -12,19 +13,19 @@ class DeidentifyForm extends Component {
     event.preventDefault();
 
     const { inputText, redact } = this.state;
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    //const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
     const formData = new FormData();
     formData.append('input_text', inputText);
     formData.append('redact', redact);
-    formData.append('csrfmiddlewaretoken', csrfToken);
+    //formData.append('csrfmiddlewaretoken', csrfToken);
 
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRFToken': csrfToken,
+          'X-CSRFToken': window.csrfToken,
         },
         body: formData,
       });
@@ -51,15 +52,17 @@ class DeidentifyForm extends Component {
           <div className="form-grid">
             <div className="form-item document-container">
               <textarea
-                rows={29}
+                rows={40}
                 name="inputText"
                 value={inputText}
                 onChange={this.handleChange}
-                style={{ width: '100%', resize: 'none' }}
+                className="input-text"
+                style={{ width: '100%', resize: 'none', }}
                 placeholder="Enter text here"
               />
             </div>
             <div className="form-item center-column">
+              <img src={deidCat} alt="DeIDCAT logo" className="image-size" />
               <button type="submit">Deidentify</button>
               <div className="redact-checkbox">
                 <label>
@@ -74,11 +77,11 @@ class DeidentifyForm extends Component {
                 </label>
               </div>
             </div>
-            <div className="form-item document-container">
+            <div className="form-item document-container output-text">
               {outputText ? (
-                <p className="output-text">{outputText}</p>
+                <p> {outputText}</p>
               ) : (
-                <p className="output-text">Deidentification Demo7</p>
+                <p className="output-text-default">Deidentification Demo</p>
               )}
             </div>
           </div>

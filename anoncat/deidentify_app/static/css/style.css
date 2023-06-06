@@ -1,3 +1,24 @@
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.header-content img {
+    width: 300px; /* Set the desired width for the logo */
+    height: auto; /* Adjust the height proportionally based on the width */
+    margin-right: 0px; /* Add some spacing between the logo and the title */
+}
+
+.header-content h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin-left: -300px;
+}
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 0.5fr 1fr;
@@ -6,7 +27,7 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    height: 500px; 
+    height: 600px; 
     overflow-y: auto;
 }
 
@@ -24,7 +45,7 @@
 
 .input-text {
     width: 100%; /* Adjust the width as desired */
-    height: 250px; /* Adjust the height as desired */
+    height: 500px; /* Adjust the height as desired */
     padding: 10px;
     font-family: Arial, sans-serif; /* Set the desired font */
     font-size: 14px; /* Set the desired font size */
@@ -33,7 +54,15 @@
     resize: vertical; /* Allow vertical resizing if desired */
 }
 
+.output-text-default {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Set the desired font size */
+    margin-top: 10px;
+}
+
 .output-text {
+    display: inline;
     font-family: Arial, sans-serif;
     font-size: 14px; /* Set the desired font size */
     margin-top: 10px;
@@ -52,3 +81,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.image-size {
+    width: 200px; /* Set the desired width */
+    height: auto; /* Adjust the height proportionally based on the width */
+  }
+  

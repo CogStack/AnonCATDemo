@@ -7,11 +7,10 @@ class DeidentifyForm(forms.ModelForm):
 
     def __init__(self, request=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['csrfmiddlewaretoken'] = forms.CharField(widget=forms.HiddenInput, initial=get_token(request))
 
     class Meta:
         model = DeidentifiedText
         fields = ['input_text']
         widgets = {
-            'input_text': forms.Textarea(attrs={'rows': 27}),
+            'input_text': forms.Textarea(attrs={'rows': 90}),
         }
