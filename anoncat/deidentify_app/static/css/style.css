@@ -32,7 +32,7 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    height: 600px; 
+    height: 70vh;
     overflow-y: auto;
 }
 
@@ -77,7 +77,6 @@
     display: inline;
     font-family: Arial, sans-serif;
     font-size: 14px; /* Set the desired font size */
-    margin-top: 10px;
     white-space: pre-wrap;
 }
 

@@ -8,13 +8,15 @@
 </head>
 <body>
     <header>
-        <img src="{% static 'media/cogstack_logo.jpg' %}" alt="cogstack_logo">
-        <h1>AnonCAT</h1>
+        <div class="header-content">
+            <img src="{% static 'media/cogstack_logo.png' %}" alt="cogstack_logo" class="image-size">
+            <h1>AnonCAT</h1>
+            <img src="{% static 'media/nhs_logo.png' %}" alt="nhs_logo" class="image-size">
+        </div>
     </header>
     
     <div id="root"></div>
     
-    <script src="{% static 'js/bundle.js' %}"></script>
     <script>
         // Retrieve the CSRF token from the cookie
         const csrfToken = "{{ csrf_token }}";
@@ -25,18 +27,13 @@
         window.csrfToken = csrfToken;
     </script>
 
-    <form id="csrf-form" method="post">
-        {% csrf_token %}
-    </form>
+    <script src="{% static 'js/bundle.js' %}"></script>
 
-    <script>
-        // Extract the CSRF token value and set it as a hidden input field
-        const csrfTokenInput = document.createElement('input');
-        csrfTokenInput.setAttribute('type', 'hidden');
-        csrfTokenInput.setAttribute('name', 'csrfmiddlewaretoken');
-        csrfTokenInput.setAttribute('value', csrfToken);
-        document.getElementById('csrf-form').appendChild(csrfTokenInput);
-    </script>
+    <footer>
+        <div class="disclaimer">
+            <p>This is for demo purposes only</p>
+        </div>
+    </footer>
 
 </body>
 </html>
