@@ -1,7 +1,7 @@
 {
   "name": "deidentify_app",
   "version": "1.0.0",
-  "description": "",
+  "description": "This App was created by Anthony Shek",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
