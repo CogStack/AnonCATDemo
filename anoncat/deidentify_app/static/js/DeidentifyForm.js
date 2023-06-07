@@ -67,7 +67,7 @@ class DeidentifyForm extends Component {
                   value={inputText}
                   onChange={this.handleChange}
                   className="input-text"
-                  style={{ width: '100%', resize: 'none', }}
+                  style={{resize: 'none', }}
                   placeholder="Enter text here"
                 />
               </div>
@@ -94,11 +94,13 @@ class DeidentifyForm extends Component {
                 </div>
               </div>
               <div className="form-item document-container output-text">
-                {outputText ? (
+                <div className="output-text-container">
+                  {outputText ? (
                   <p> {outputText}</p>
-                ) : (
+                  ) : (
                   <p className="output-text-default">Deidentification Demo</p>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </form>
