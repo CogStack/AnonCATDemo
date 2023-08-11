@@ -21,11 +21,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY anoncat /app/
 
-# Expose the port that your Django app will run on (if needed)
-# Example: EXPOSE 8000
+# Install Node.js and npm
+RUN apt-get update && apt-get install -y nodejs npm
+
+# Run the command to build frontend assets using Webpack
+RUN npx webpack --config webpack.config.js
 
 # Collect static files (if needed)
 RUN python manage.py collectstatic --noinput
+
+# Expose the port that your Django app will run on
+EXPOSE 8000
 
 # Run the Django development server (replace with your actual command to run the app)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
