@@ -7,31 +7,37 @@ ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE=anoncat.api.settings
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /anoncat/
 
-# Install system dependencies (if needed)
-# Example: RUN apt-get update && apt-get install -y your_dependencies
+# Install system dependencies 
+RUN apt-get update && \
+    apt-get install -y nodejs npm build-essential vim bash
+
+# Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Copy the requirements file into the container
-COPY requirements.txt /app/
+COPY requirements.txt /anoncat/
 
 # Install the required Python packages
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY anoncat /app/
-
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y nodejs npm
+COPY anoncat /anoncat/
 
 # Run the command to build frontend assets using Webpack
+WORKDIR /anoncat/deidentify_app/
 RUN npx webpack --config webpack.config.js
 
 # Collect static files (if needed)
-RUN python manage.py collectstatic --noinput
+WORKDIR /anoncat/
+#RUN python manage.py migrate
+#RUN python manage.py collectstatic --noinput
 
 # Expose the port that your Django app will run on
 EXPOSE 8000
 
-# Run the Django development server (replace with your actual command to run the app)
+# Run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
