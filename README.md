@@ -25,6 +25,11 @@ The Deidentify app is a tool for redacting and replacing sensitive information i
 
 - Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
 
+### Build your own model
+
+To build your own models please follow the tutorials outlined in [MedCATtutorials](https://github.com/CogStack/MedCATtutorials)
+
+*__Note:__ This is currently under development*
 
 ## Starting the demo service
 
