@@ -12,6 +12,11 @@ Replace sensitive information: Alternatively, the app can replace sensitive info
 Customizable rules: The app allows users to create custom rules for identifying and classifying sensitive information based on their specific needs and use cases.
 Batch processing: The app can process multiple documents at once, making it easy to redact or replace sensitive information in large datasets.
 
+<p align="center">
+  <img src="anoncat/deidentify_app/static/media/screenshot_deid_app.png" alt="AnonCAT Screenshot" width="auto">
+</p>
+
+
 ## DeID Model
  *For out of the box models please contact: contact@cogstack.org*
 
