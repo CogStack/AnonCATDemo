@@ -4,7 +4,7 @@ FROM python:3.11
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=anoncat.api.settings
+ENV DJANGO_SETTINGS_MODULE=api.settings
 
 # Set the working directory in the container
 WORKDIR /anoncat/
@@ -33,8 +33,8 @@ RUN npx webpack --config webpack.config.js
 
 # Collect static files (if needed)
 WORKDIR /anoncat/
-#RUN python manage.py migrate
-#RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate
+RUN python manage.py collectstatic --noinput
 
 # Expose the port that your Django app will run on
 EXPOSE 8000
