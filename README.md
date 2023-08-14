@@ -21,9 +21,13 @@ Batch processing: The app can process multiple documents at once, making it easy
 
 
 ## Starting the demo service
+
+Start the Docker services by using `docker-compose`. This will build the necessary Docker images and start the services.
 ```bash
 docker-compose up
 ```
+
+Once the services are up and running, you can access the Deidentify app in your web browser by navigating to http://localhost:8000.
 
 ## Setup from source
 
