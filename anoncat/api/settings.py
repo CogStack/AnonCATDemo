@@ -12,14 +12,25 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 print(BASE_DIR)
 
+# Load environment variables from .env file in the BASE_DIR
+dotenv_path = BASE_DIR / '.env'
+load_dotenv(dotenv_path)
+
 # Enter your model name here:
-model_name = 'deid_medcat_n2c2_modelpack.zip'
-DEID_MODEL = os.path.join(os.path.join(BASE_DIR, 'deidentify_app', 'models', model_name))
+model_name = os.environ.get('MODEL_NAME')
+
+if model_name:
+    DEID_MODEL = os.path.join(os.path.join(BASE_DIR, 'deidentify_app', 'models', model_name))
+    print(f'The "MODEL_PATH" environment variable is set to: {DEID_MODEL}')
+else:
+    raise ValueError('The "MODEL_PATH" environment is not set. Please consider populating it in the .env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

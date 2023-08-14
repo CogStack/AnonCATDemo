@@ -23,7 +23,11 @@ The Deidentify app is a tool for redacting and replacing sensitive information i
 
 - Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
 
-- Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
+- Step 2: In the file [.env](anoncat/.env) change the `MODEL_NAME` parameter to the file name of your model. Save the changes you made to the `.env` file.
+```bash
+MODEL_NAME = '<NAME OF MODEL HERE.zip>'
+```
+
 
 ### Build your own model
 
