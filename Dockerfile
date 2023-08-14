@@ -32,9 +32,9 @@ WORKDIR /anoncat/deidentify_app/
 RUN npm install .
 RUN npx webpack --config webpack.config.js
 
-# Download the default Anoncat model
-RUN wget -O deid_medcat_n2c2_modelpack.zip https://medcat.rosalind.kcl.ac.uk/media/deid_medcat_n2c2_modelpack.zip && \
-    unzip deid_medcat_n2c2_modelpack.zip -d deidentify_app/models/
+# Download the default Anoncat model (message me for models)
+#RUN wget -O deid_medcat_n2c2_modelpack.zip https://medcat.rosalind.kcl.ac.uk/media/deid_medcat_n2c2_modelpack.zip && \
+#    unzip deid_medcat_n2c2_modelpack.zip -d deidentify_app/models/
 
 # Collect static files (if needed)
 WORKDIR /anoncat/
