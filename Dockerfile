@@ -11,7 +11,7 @@ WORKDIR /anoncat/
 
 # Install system dependencies 
 RUN apt-get update && \
-    apt-get install -y nodejs npm build-essential vim bash
+    apt-get install -y nodejs npm build-essential vim bash wget
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -29,7 +29,12 @@ COPY anoncat /anoncat/
 
 # Run the command to build frontend assets using Webpack
 WORKDIR /anoncat/deidentify_app/
+RUN npm install .
 RUN npx webpack --config webpack.config.js
+
+# Download the default Anoncat model
+RUN wget -O deid_medcat_n2c2_modelpack.zip https://medcat.rosalind.kcl.ac.uk/media/deid_medcat_n2c2_modelpack.zip && \
+    unzip deid_medcat_n2c2_modelpack.zip -d deidentify_app/models/
 
 # Collect static files (if needed)
 WORKDIR /anoncat/
