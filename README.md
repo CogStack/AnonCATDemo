@@ -12,8 +12,20 @@ Replace sensitive information: Alternatively, the app can replace sensitive info
 Customizable rules: The app allows users to create custom rules for identifying and classifying sensitive information based on their specific needs and use cases.
 Batch processing: The app can process multiple documents at once, making it easy to redact or replace sensitive information in large datasets.
 
+## DeID Model
+ *For out of the box models please contact: contact@cogstack.org*
 
-## Setup 
+- Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
+
+- Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
+
+
+## Starting the demo service
+```bash
+docker-compose up
+```
+
+## Setup from source
 
 - Install dependencies:
 ```bash
@@ -24,14 +36,6 @@ pip install -r requirements.txt
  ```bash
  python manage.py migrate
  ```
-
-### DeID Model
- *For out of the box models please contact: contact@cogstack.org*
-
-- Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
-
-- Step 2: In the [settings.py](anoncat/api/settings.py) change the variable model_name to the file name of your model
-
 
 ### Frontend Dependencies
 
@@ -48,7 +52,7 @@ This project uses frontend dependencies managed by npm. To install them, follow 
    npm run build
    ```
 
-## Run the app:
+### Run the app:
 ```bash
 python manage.py runserver 8000
 ```
