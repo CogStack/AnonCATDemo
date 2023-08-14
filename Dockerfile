@@ -1,10 +1,10 @@
 # Use the official Python image as the base image
 FROM python:3.11
 
-# Set environment variables
+# Set environment variables (This overwrites all defualts in the app)
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=api.settings
+ENV DJANGO_SETTINGS_MODULE=api.settings  
 
 # Set the working directory in the container
 WORKDIR /anoncat/
