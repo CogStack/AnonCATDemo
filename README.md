@@ -42,7 +42,7 @@ Start the Docker services by using `docker-compose`. This will build the necessa
 docker-compose up
 ```
 
-Once the services are up and running, you can access the Deidentify app in your web browser by navigating to http://localhost:8000.
+Once the services are up and running, you can access the Deidentify app in your web browser by navigating to http://localhost:8002.
 
 ## Setup from source
 
@@ -73,5 +73,5 @@ This project uses frontend dependencies managed by npm. To install them, follow 
 
 ### Run the app:
 ```bash
-python manage.py runserver 8000
+python manage.py runserver 8002
 ```
