@@ -10,4 +10,4 @@ services:
     restart: unless-stopped
 
     ports:
-      - "8000:8000"
+      - "8002:8000"

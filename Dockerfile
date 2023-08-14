@@ -40,9 +40,3 @@ RUN npx webpack --config webpack.config.js
 WORKDIR /anoncat/
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
-
-# Expose the port that your Django app will run on
-EXPOSE 8002
-
-# Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8002"]
