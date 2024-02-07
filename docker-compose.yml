@@ -8,6 +8,5 @@ services:
       dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     restart: unless-stopped
-
     ports:
       - "8002:8000"
