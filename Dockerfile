@@ -9,13 +9,13 @@ ENV DJANGO_SETTINGS_MODULE=api.settings
 # Set the working directory in the container
 WORKDIR /anoncat/
 
-# Install system dependencies 
-RUN apt-get update && \
-    apt-get install -y nodejs npm build-essential vim bash wget
+# Install system dependencies
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y nodejs && apt-get install -y npm
 
 # Install Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN export PATH="$HOME/.cargo/bin:$PATH"
 
 # Copy the requirements file into the container
 COPY requirements.txt /anoncat/
@@ -38,5 +38,4 @@ RUN npx webpack --config webpack.config.js
 
 # Collect static files (if needed)
 WORKDIR /anoncat/
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
+

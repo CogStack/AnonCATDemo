@@ -18,13 +18,13 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Enter your model name here:
-model_name = os.environ.get('MODEL_NAME')
+model_path = os.environ.get('MODEL_PATH')
 
-if model_name:
-    DEID_MODEL = os.path.join(os.path.join(BASE_DIR, 'deidentify_app', 'models', model_name))
+if model_path:
+    DEID_MODEL = model_path
     print(f'The model to be loaded is: {DEID_MODEL}')
 else:
-    raise ValueError('The "MODEL_NAME" environment is not set. Please consider populating it in the .env')
+    raise ValueError('The "MODEL_PATH" environment is not set. Please consider populating it in the .env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-oqmt4bxkxxj=_oas!^#2&k(fs7929ov-_9#bixft_z-=++td%l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'anoncat.sites.er.kcl.ac.uk ']
 
 
 # Application definition
