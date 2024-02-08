@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  deidentify-medcat1-10:
+  anoncat:
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,4 +12,4 @@ services:
       - ../models:/home/models
     restart: unless-stopped
     ports:
-      - "8004:8000"
+      - "8002:8000"

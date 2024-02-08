@@ -38,9 +38,10 @@ SECRET_KEY = 'django-insecure-oqmt4bxkxxj=_oas!^#2&k(fs7929ov-_9#bixft_z-=++td%l
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'anoncat.sites.er.kcl.ac.uk']
-
 if host_ip is not None:
     ALLOWED_HOSTS += [host_ip]
+
+CSRF_TRUSTED_ORIGINS = ['https://anoncat.sites.er.kcl.ac.uk']
 
 # Application definition
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'deidentify_app',
 ]
 
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
