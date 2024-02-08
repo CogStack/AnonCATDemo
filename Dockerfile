@@ -14,8 +14,9 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y nodejs && apt-get install -y npm
 
 # Install Rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN export PATH="$HOME/.cargo/bin:$PATH"
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=1.72.1 -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+ENV RUSTUP_TOOLCHAIN=1.72.1
 
 # Copy the requirements file into the container
 COPY requirements.txt /anoncat/
@@ -38,4 +39,6 @@ RUN npx webpack --config webpack.config.js
 
 # Collect static files (if needed)
 WORKDIR /anoncat/
+
+RUN chmod a+x run.sh
 

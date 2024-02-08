@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Enter your model name here:
 model_path = os.environ.get('MODEL_PATH')
 
+host_ip = os.environ.get('HOST_IP', None)
+
 if model_path:
     DEID_MODEL = model_path
     print(f'The model to be loaded is: {DEID_MODEL}')
@@ -35,8 +37,10 @@ SECRET_KEY = 'django-insecure-oqmt4bxkxxj=_oas!^#2&k(fs7929ov-_9#bixft_z-=++td%l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'anoncat.sites.er.kcl.ac.uk ']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'anoncat.sites.er.kcl.ac.uk']
 
+if host_ip is not None:
+    ALLOWED_HOSTS += [host_ip]
 
 # Application definition
 
@@ -137,3 +141,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

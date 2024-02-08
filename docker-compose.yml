@@ -1,18 +1,15 @@
 version: '3.7'
 
 services:
-  deidentify:
-    container_name: anoncat
+  deidentify-medcat1-10:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python manage.py migrate &&
-        python manage.py collectstatic --noinput &&
-        python manage.py runserver 0.0.0.0:8000
+    command: ./run.sh
     env_file:
       - ./anoncat/.env
     volumes:
       - ../models:/home/models
     restart: unless-stopped
     ports:
-      - "8002:8000"
+      - "8004:8000"

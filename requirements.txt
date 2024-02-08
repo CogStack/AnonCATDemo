@@ -1,3 +1,5 @@
 --extra-index-url https://download.pytorch.org/whl/cpu/
 Django~=4.2
-medcat@git+https://github.com/CogStack/MedCAT@9ea067549ff41242aaf4df53236221a0f2c06898
+#medcat@git+https://github.com/CogStack/MedCAT@9ea067549ff41242aaf4df53236221a0f2c06898
+medcat~=1.10
+#pydantic~=1.10
