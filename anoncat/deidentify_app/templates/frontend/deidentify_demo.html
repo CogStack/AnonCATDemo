@@ -14,13 +14,13 @@
             <img src="{% static 'media/nhs_logo.png' %}" alt="nhs_logo" class="image-size">
         </div>
     </header>
-    
+
     <div id="root"></div>
-    
+
     <script>
         // Retrieve the CSRF token from the cookie
         const csrfToken = "{{ csrf_token }}";
-      
+
         // Pass the CSRF token to your JavaScript code
         // You can assign it to a global variable or store it in a data attribute on an HTML element
         // For simplicity, we'll assign it to a global variable here

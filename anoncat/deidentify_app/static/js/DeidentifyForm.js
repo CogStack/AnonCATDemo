@@ -101,18 +101,21 @@ class DeidentifyForm extends Component {
 
     const { inputText, redact } = this.state;
 
-    const formData = new FormData();
-    formData.append('input_text', inputText);
-    formData.append('redact', redact);
+    const payload = {
+      input_text: inputText,
+      redact: redact
+    }
 
     try {
-      const response = await fetch('/', {
+      const response = await fetch('/deidentify/', {
         method: 'POST',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           'X-CSRFToken': window.csrfToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: formData,
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();

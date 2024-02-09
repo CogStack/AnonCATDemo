@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.deidentify, name='deidentify-demo'),
+    path('', views.index, name='index'),
+    path('deidentify/', views.deidentify),
 ]
