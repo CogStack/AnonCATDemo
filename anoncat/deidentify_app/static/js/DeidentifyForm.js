@@ -122,7 +122,6 @@ class DeidentifyForm extends Component {
       } else {
         this.setState({error: false})
         this.setState({apiToken: data.token})
-        document.cookie = `${document.cookie};api-token=${data.token};username=test;user-id=test`
       }
     } catch (error) {
       this.setState({error: true})
@@ -147,9 +146,10 @@ class DeidentifyForm extends Component {
           'X-CSRFToken': window.csrfToken,
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Token ' + apiToken
+          'Authorization': 'Token ' + apiToken,
         },
         body: JSON.stringify(payload),
+        credentials: 'same-origin',
       });
 
       const data = await response.json();
