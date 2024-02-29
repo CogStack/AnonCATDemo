@@ -22,9 +22,6 @@ def index(request):
 def deidentify(request):
     user = request.user
 
-    if user.is_anonymous:
-        return HttpResponseServerError("No auth key")
-
     input_text = request.data['input_text']
     redact = request.data['redact']
     output_text = deid_text(cat, input_text, redact=redact)
