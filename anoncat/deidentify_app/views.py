@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError
 from rest_framework.decorators import api_view
 
 from medcat.cat import CAT
@@ -20,6 +20,11 @@ def index(request):
 
 @api_view(http_method_names=['POST'])
 def deidentify(request):
+    user = request.user
+
+    if user.is_anonymous:
+        return HttpResponseServerError("No auth key")
+
     input_text = request.data['input_text']
     redact = request.data['redact']
     output_text = deid_text(cat, input_text, redact=redact)

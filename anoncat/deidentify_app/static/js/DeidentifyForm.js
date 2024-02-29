@@ -93,13 +93,45 @@ class DeidentifyForm extends Component {
   state = {
     inputText: '',
     redact: false,
-    outputText: ''
+    outputText: '',
+    password: '',
+    apiToken: null,
+    error: false,
   };
+
+  handleLogin = async (event) => {
+    event.preventDefault()
+
+    const { password  } = this.state;
+    const payload = {
+      username: 'test',
+      password: password
+    }
+    try {
+      const resp = await fetch('/auth/', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': window.csrfToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+      })
+      const data = await resp.json()
+      if (resp.status !== 200) {
+        this.setState({error: true})
+      } else {
+        this.setState({error: false})
+        this.setState({apiToken: data.token})
+      }
+    } catch (error) {
+      this.setState({error: true})
+    }
+  }
 
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { inputText, redact } = this.state;
+    const { inputText, redact, apiToken } = this.state;
 
     const payload = {
       input_text: inputText,
@@ -113,7 +145,8 @@ class DeidentifyForm extends Component {
           'X-Requested-With': 'XMLHttpRequest',
           'X-CSRFToken': window.csrfToken,
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + apiToken
         },
         body: JSON.stringify(payload),
       });
@@ -121,7 +154,7 @@ class DeidentifyForm extends Component {
       const data = await response.json();
       this.setState({ outputText: data.output_text });
     } catch (error) {
-      console.error('Error:', error);
+      location.reload()
     }
   };
 
@@ -135,10 +168,32 @@ class DeidentifyForm extends Component {
   }
 
   render() {
-    const { inputText, redact, outputText } = this.state;
+    const { inputText, redact, outputText, password, apiToken, error } = this.state;
 
     return (
         <ThemeProvider theme={theme}>
+          <div className={"login-overlay " + (apiToken ? 'hidden': '')}>
+            <div className="login-form">
+              <input
+                  type="password"
+                  name="password"
+                  className={'password-input'}
+                  placeholder={"password"}
+                  value={password}
+                  onChange={this.handleChange}
+              ></input>
+              <div className={"access-button"}>
+                <Button variant="contained" color="primary" type="submit" onClick={this.handleLogin}>
+                  Access
+                </Button>
+              </div>
+              <div>
+                <p className={error ? 'error' : 'hidden'}>
+                  Incorrect password
+                </p>
+              </div>
+            </div>
+          </div>
           <div>
             <form onSubmit={this.handleSubmit}>
               <div className="form-grid">
