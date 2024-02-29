@@ -122,6 +122,7 @@ class DeidentifyForm extends Component {
       } else {
         this.setState({error: false})
         this.setState({apiToken: data.token})
+        document.cookie = `${document.cookie};api-token=${data.token};username=test;user-id=test`
       }
     } catch (error) {
       this.setState({error: true})
