@@ -8,6 +8,7 @@ services:
       - ./app/.env
     volumes:
       - ../medcat-models:/home/models
+      - app-db:/home/app/db
     restart: unless-stopped
     ports:
       - "8002:8000"
