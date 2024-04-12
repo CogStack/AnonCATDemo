@@ -1,16 +1,8 @@
-<p align="center">
-  <img src="anoncat/deidentify_app/static/media/deidcat.png" alt="AnonCAT logo" width="100">
-</p>
-
 # Deidentify app
 
-The Deidentify app is a tool for redacting and replacing sensitive information in a document. It uses [MedCAT](https://github.com/CogStack/MedCAT), an advanced natural language processing tool, to identify and classify sensitive information, such as names, addresses, and medical terms.
+Demo for AnonCAT. It uses [MedCAT](https://github.com/CogStack/MedCAT), an advanced natural language processing tool, to identify and classify sensitive information, such as names, addresses, and medical terms.
 
 ## Example
-
-<p align="center">
-  <img src="anoncat/deidentify_app/static/media/screenshot_deid_app.png" alt="AnonCAT Screenshot" width="auto">
-</p>
 
 ## Features
 - Redact sensitive information: The Deidentify app can automatically redact sensitive information from a document, replacing it with a placeholder value, such as "[REDACTED]".
@@ -21,9 +13,8 @@ The Deidentify app is a tool for redacting and replacing sensitive information i
 ## DeID Model
  *For out of the box models please contact: contact@cogstack.org*
 
-- Step 1: Upload your model to the [models dir](anoncat/deidentify_app/models).
-
-- Step 2: In the file [.env](anoncat/.env) change the `MODEL_NAME` parameter to the file name of your model. Save the changes you made to the `.env` file.
+Models configured in .env
+ `../models/` mounted into the container under `/home/models/` 
 ```bash
 MODEL_NAME = '<NAME OF MODEL HERE.zip>'
 ```
@@ -42,36 +33,3 @@ Start the Docker services by using `docker-compose`. This will build the necessa
 docker-compose up
 ```
 
-Once the services are up and running, you can access the Deidentify app in your web browser by navigating to http://localhost:8002.
-
-## Setup from source
-
-- Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-- Set up the database:
- ```bash
- python manage.py migrate
- ```
-
-### Frontend Dependencies
-
-This project uses frontend dependencies managed by npm. To install them, follow these steps:
-
-1. Make sure you have [Node.js](https://nodejs.org/) and npm installed on your system.
-2. Navigate to the project's [app directory](anoncat/deidentify_app). 
-3. Run the following command to install the frontend dependencies:
-
-   ```bash
-   npm install
-    ```
-    ```bash
-   npm run build
-   ```
-
-### Run the app:
-```bash
-python manage.py runserver 8002
-```
