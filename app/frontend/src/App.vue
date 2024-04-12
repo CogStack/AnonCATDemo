@@ -16,13 +16,14 @@
     </div>
 
     <modal v-if="helpModal" :closable="true" @modal:close="helpModal = false">
-      <template #head>
-        Help Text
-      </template>
       <template #body>
-        <p>Demo app for deidentification of private health information using the CogStack AnonCAT model</p>
+        <p>Demo app for the deidentification of private health information using the CogStack AnonCAT model</p>
         <br>
         <p>Please DO NOT test with any real sensitive PHI data.</p>
+        <br>
+        <p>Local validation and fine-tuning available via <a href="https://github.com/CogStack/MedCATtrainer">MedCATtrainer</a>.
+          Email us, <a href="mailto:contact@cogstack.org">contact@cogstack.org</a>, to discuss model access, model performance, and your use case.
+        </p>
         <br>
         <p>The following PHI items have been trained:</p>
         <v-table>
@@ -76,6 +77,11 @@
     </modal>
 
     <modal v-if="loginModal" :closable="false">
+      <template #header>
+        <p>Demo app for the deidentification of private health information using the CogStack AnonCAT model</p>
+        <br>
+        <p>Email us for access! <a href="mailto:contact@cogstack.org">contact@cogstack.org</a></p>
+      </template>
       <template #body>
         <div class="login-form">
           <form @submit.prevent class="form">
