@@ -1,15 +1,13 @@
-version: '3.7'
-
 services:
   anoncat:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ./run.sh
+    command: ./scripts/run.sh
     env_file:
-      - ./anoncat/.env
+      - ./app/.env
     volumes:
-      - ../models:/home/models
+      - ../medcat-models:/home/models
     restart: unless-stopped
     ports:
       - "8002:8000"

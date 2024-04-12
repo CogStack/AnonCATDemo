@@ -1,0 +1,90 @@
+@import './base.css';
+
+html {
+  overflow-y: hidden !important;
+}
+
+#app {
+  /*max-width: 1280px;*/
+  /*margin: 0 auto;*/
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    /*display: flex;*/
+    /*place-items: center;*/
+  }
+
+  #app {
+    display: grid;
+    grid-template-rows: 95px auto;
+    grid-template-columns: 1fr; /* Updated: Remove the second column */
+    height: 100vh; /* Updated: Set the app div to occupy the full viewport height */
+    overflow: hidden;
+  }
+
+  #app > div {
+    border: 1px solid white; /* Added: Just for visualization purposes */
+  }
+
+  .nav {
+    grid-row: 1; /* Position the navigation div in the first row */
+  }
+
+  .content {
+    grid-row: 2; /* Fill the remaining space in the second row */
+  }
+
+  /*.footer {*/
+  /*  grid-row: 3; !* Position the footer div in the third row *!*/
+  /*}*/
+
+  .wireframe {
+    border: 1px solid grey;
+  }
+}
+
+.title {
+  height: 42px;
+  font-size: 1.8rem;
+  color: var(--vt-c-black-soft);
+  padding: 10px 5px;
+}
+
+.sub-title {
+  height: 42px;
+  font-size: 1.2rem;
+  color: var(--vt-c-black-soft);
+  padding: 3px 5px;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.component-title {
+  height: 25px;
+  font-size: 1rem;
+  color: var(--vt-c-black-soft);
+  margin: 10px 3px;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+  padding-left: 5px;
+}
+
+.v-btn--size-default {
+  min-width: 30px !important;
+  padding: 5px 3px !important;
+}
