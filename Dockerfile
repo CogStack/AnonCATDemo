@@ -1,44 +1,32 @@
-# Use the official Python image as the base image
 FROM python:3.11
 
-# Set environment variables (This overwrites all defualts in the app)
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=api.settings  
+# Update and upgrade everything
+RUN apt-get update -y && \
+    apt-get upgrade -y
 
-# Set the working directory in the container
-WORKDIR /anoncat/
+# install vim as its annoying not to have an editor
+RUN apt-get install -y vim
 
-# Install system dependencies
-RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y nodejs && apt-get install -y npm
+# Get node and npm
+RUN apt install -y nodejs && apt install -y npm
 
-# Install Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=1.72.1 -y
+# Install Rust - for tokenziers dep in medcat.
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-ENV RUSTUP_TOOLCHAIN=1.72.1
 
-# Copy the requirements file into the container
-COPY requirements.txt /anoncat/
+# Copy project
+WORKDIR /home/
+COPY ./ .
 
-# Install the required Python packages
-RUN pip install --no-cache-dir --upgrade pip
+# Build frontend
+WORKDIR /home/app/frontend
+RUN npm install && npm run build-only
+
+# Install requirements for backend
+WORKDIR /home/app
+RUN pip install pip --upgrade
 RUN pip install --no-cache-dir -r requirements.txt
+ARG SPACY_MODELS="en_core_web_md"
+RUN for SPACY_MODEL in ${SPACY_MODELS}; do python -m spacy download ${SPACY_MODEL}; done
 
-# Copy the rest of the application code into the container
-COPY anoncat /anoncat/
-
-# Run the command to build frontend assets using Webpack
-WORKDIR /anoncat/deidentify_app/
-RUN npm install .
-RUN npx webpack --config webpack.config.js
-
-# Download the default Anoncat model (message me for models)
-#RUN wget -O deid_medcat_n2c2_modelpack.zip https://medcat.rosalind.kcl.ac.uk/media/deid_medcat_n2c2_modelpack.zip && \
-#    unzip deid_medcat_n2c2_modelpack.zip -d deidentify_app/models/
-
-# Collect static files (if needed)
-WORKDIR /anoncat/
-
-RUN chmod a+x run.sh
-
+RUN chmod a+x /home/app/scripts/run.sh
